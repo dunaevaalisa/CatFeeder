@@ -1,3 +1,12 @@
+/*
+This device can feed the cat (or others) when the joystick is moved. 
+For the mechanism of the feeder we used servo that spins a can. 
+It's possible to schedule the time when a cat can get food and how restrict many times per day. Also you can regulate the amount of food that comes out. 
+When cat can no longer get food the colod of LED circle is changed to red and a sound is made. When the counter is reset and it is time for food the color of the light changes to 
+green and Nokia ringtone is played. The device also has an LCD-screen that prints the counter of how many times it was used today and when was the last time of usage. 
+*/
+
+
 //including libraries
 #include <WiFi.h>
 #include "time.h"
@@ -6,6 +15,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "pitches.h"
+#include "config.h" 
 
 
 //LED circle
@@ -38,8 +48,8 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 int counter = 0; //defining a variable for counter
 char lastUseTime[6] = "00:00"; // Store the last usage time as a string
 
-const char* ssid = "Alisa"; // name of the network
-const char* password = "8758758758"; //password for the network
+const char* ssid = SSIDNAME; // name of the network
+const char* password = SSIDPASS; //password for the network
 
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset_sec = 2 * 3600;
